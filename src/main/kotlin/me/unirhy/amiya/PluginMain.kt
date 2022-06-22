@@ -10,6 +10,7 @@ import net.mamoe.mirai.event.events.NewFriendRequestEvent
 import net.mamoe.mirai.message.data.Image
 import net.mamoe.mirai.message.data.Image.Key.queryUrl
 import net.mamoe.mirai.message.data.PlainText
+import net.mamoe.mirai.utils.MiraiLogger
 import net.mamoe.mirai.utils.info
 
 /**
@@ -37,6 +38,7 @@ object PluginMain : KotlinPlugin(
         // author 和 info 可以删除.
     }
 ) {
+
     override fun onEnable() {
         logger.info { "Plugin loaded" }
         //配置文件目录 "${dataFolder.absolutePath}/"
