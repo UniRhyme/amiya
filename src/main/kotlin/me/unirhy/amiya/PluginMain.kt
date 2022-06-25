@@ -1,17 +1,10 @@
 package me.unirhy.amiya
 
-import me.unirhy.amiya.handlers.GroupMessageHandler
+import me.unirhy.amiya.handlers.cupSizeHandler
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.GlobalEventChannel
-import net.mamoe.mirai.event.events.BotInvitedJoinGroupRequestEvent
-import net.mamoe.mirai.event.events.FriendMessageEvent
 import net.mamoe.mirai.event.events.GroupMessageEvent
-import net.mamoe.mirai.event.events.NewFriendRequestEvent
-import net.mamoe.mirai.message.data.Image
-import net.mamoe.mirai.message.data.Image.Key.queryUrl
-import net.mamoe.mirai.message.data.PlainText
-import net.mamoe.mirai.utils.MiraiLogger
 import net.mamoe.mirai.utils.info
 
 /**
@@ -40,13 +33,14 @@ object PluginMain : KotlinPlugin(
     }
 ) {
 
+
     override fun onEnable() {
         logger.info { "阿米娅冲鸭" }
         //配置文件目录 "${dataFolder.absolutePath}/"
 
         val eventChannel = GlobalEventChannel.parentScope(this)
-        eventChannel.subscribeAlways<GroupMessageEvent>{
-            GroupMessageHandler(it).handle()
+        eventChannel.subscribeAlways<GroupMessageEvent> {
+            cupSizeHandler.handle(it)
         }
 //        eventChannel.subscribeAlways<FriendMessageEvent>{
 //            //好友信息
