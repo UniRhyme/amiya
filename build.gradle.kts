@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.6.10"
+    val kotlinVersion = "1.7.0"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
 
@@ -17,6 +17,8 @@ repositories {
 }
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.yaml:snakeyaml:1.30")
+
 }
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
