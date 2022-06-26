@@ -2,6 +2,7 @@ package me.unirhy.amiya.handlers
 
 import net.mamoe.mirai.event.events.GroupMessageEvent
 import net.mamoe.mirai.message.data.content
+import kotlin.math.roundToInt
 
 private val splitRegex = Regex("\\s+")
 
@@ -11,10 +12,6 @@ private const val description = "Oops, wrong arguments!\n" +
     "Over-bust: 过rt的胸围"
 
 val cupSizeHandler = handler<GroupMessageEvent> {
-
-    if (!message.content.endsWith("(") || !message.content.endsWith("（")) {
-        group.sendMessage("让我看看谁还没有把括号补齐?")
-    }
 
     if (!message.content.startsWith("Cup ")) return@handler
 
@@ -42,8 +39,8 @@ val cupSizeHandler = handler<GroupMessageEvent> {
         return@handler
     }
 
-    val cup = calculateCup(diff / 2)
-    val size = under - (under % 5)
+    val cup = calculateCup((diff / 2.0f).roundToInt())
+    val size = if (under % 5 > 2) under + 5 - under % 5 else under - under % 5
 
     group.sendMessage(
         when (cup) {

@@ -1,6 +1,7 @@
 package me.unirhy.amiya
 
 import me.unirhy.amiya.handlers.cupSizeHandler
+import me.unirhy.amiya.handlers.parenthesesFunHandler
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.GlobalEventChannel
@@ -33,14 +34,19 @@ object PluginMain : KotlinPlugin(
     }
 ) {
 
+    private val dispatcher: EventDispatcher = EventDispatcher()
 
     override fun onEnable() {
         logger.info { "阿米娅冲鸭" }
         //配置文件目录 "${dataFolder.absolutePath}/"
 
+        // dispatcher.addListener(GroupMessageEvent::class.java.name, cupSizeHandler)
+
         val eventChannel = GlobalEventChannel.parentScope(this)
         eventChannel.subscribeAlways<GroupMessageEvent> {
+            // dispatcher.dispatch(it)
             cupSizeHandler.handle(it)
+            parenthesesFunHandler.handle(it)
         }
 //        eventChannel.subscribeAlways<FriendMessageEvent>{
 //            //好友信息
