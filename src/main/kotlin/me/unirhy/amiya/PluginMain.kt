@@ -1,6 +1,7 @@
 package me.unirhy.amiya
 
 import me.unirhy.amiya.handlers.cupSizeHandler
+import me.unirhy.amiya.handlers.greeterHandler
 import me.unirhy.amiya.handlers.parenthesesFunHandler
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
@@ -32,6 +33,7 @@ object PluginMain : KotlinPlugin(
             // dispatcher.dispatch(it)
             cupSizeHandler.handle(it)
             parenthesesFunHandler.handle(it)
+            greeterHandler.handle(it)
         }
     }
 }

@@ -8,6 +8,8 @@ val brackets = mapOf(
     "(" to ")",
     "[" to "]",
     "{" to "}",
+    "<" to ">",
+
     // Unicode
     "（" to "）",
     "【" to "】",
